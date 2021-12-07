@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 // ** LANCEMENT DE MES VARIABLE POUR CSS */
 
 if(isset($_SESSION['id']))
@@ -29,8 +28,48 @@ else
     $data_id = $_SESSION['id']; //Atribution d'une variable pour definir l'utilisateur cible
     }
 //** CONNEXION A LA BASE DE DONNER */
-$conn = mysqli_connect('localhost','root','','moduleconnexion');
+$conn = mysqli_connect('localhost','root','','livre_or');
 $login = $_SESSION['login'];
+//* TEST de changement de couleur*/
+if(isset($_POST['head']))
+{
+    $_SESSION['color_head']=$_POST['head'];
+    $color_head= $_SESSION['color_head'];
+    $up_color_head = mysqli_query($conn,"UPDATE `utilisateurs` SET `color_head`= '$color_head' WHERE `id`='$data_id'");
+}
+elseif(!empty($_SESSION['color_head']))
+{
+    $color_head = $_SESSION['color_head'];
+}
+else
+{
+    $color_head = '#ffffff';
+}
+if(isset($_POST['body']))
+{
+    $_SESSION['color_body']=$_POST['body'];
+    $color_body= $_SESSION['color_body'];
+    $up_color_head = mysqli_query($conn,"UPDATE `utilisateurs` SET `color_body`= '$color_body' WHERE `id`='$data_id'");
+}
+elseif(isset($_SESSION['color_body']))
+{
+    $color_body = $_SESSION['color_body'];
+}
+else
+{
+    $color_body = '#01898c';
+}
+?>
+<style>
+        body {
+            background-color:<?=$color_body?>;
+        }
+        .user_icon_login{
+            background-color:<?=$color_head?>;
+        }
+</style>
+<?php
+
 //** CONDITION PRELIMINAIRE A L'UTILISATION DU FORMULAIRE */
     //** UPDATE PRENOM */
 if(isset($_POST['m_prenom']))
@@ -82,8 +121,8 @@ require('meta.php'); //Récupération des meta et des link necessaire à la navi
 ?>
     <title>Mon compte</title>
 </head>
-
 <body class="<?=$id //Cette variable défini le comportement de mon css?>_body">
+
     <header>
         <?php
         require('header.php'); //Envoie de la barre de navigation 
@@ -114,7 +153,7 @@ require('meta.php'); //Récupération des meta et des link necessaire à la navi
                 $localisation_erreur = 'error_user';
                 unset($_SESSION['error_validation']);
                 }
-            ?>
+                ?>
             <thead>
                     <th><?=$_SESSION['prenom'].' '.$_SESSION['nom']?></th>
             </thead>
@@ -308,23 +347,28 @@ require('meta.php'); //Récupération des meta et des link necessaire à la navi
             $_SESSION['error_validation']='Mot de passe incorrect';
         }  
     }
-    if(isset($_SESSION['final']) && $_SESSION['final']==1)
-{
-    unset($_SESSION['error']);
-    unset($_SESSION['popup_annule']);
-    unset($_SESSION['final']);
-    unset($_SESSION['error_validation']);
-    header('location: profil.php');
-    exit();
-}
-    elseif(isset($_SESSION['error']) && $_SESSION['error']==1){
-        unset($_POST);
-        unset($_SESSION['error']);
-        header('location: profil.php');
-        exit();
-    }
+
                     ?>
                             </div>
+                        </section>
+                        <section id="custon_color">
+                            <h3>Personnalisez votre espace:</h3>
+                                <form action="profil.php" method="post">
+                                <div>
+                                    <input type="color" id="head" name="head"
+                                        value="<?=$color_head?>">
+                                    <label for="head">Couleur Profil</label>
+                                </div>
+
+                                <div>
+                                    <input type="color" id="body" name="body"
+                                            value="<?=$color_body?>">
+                                    <label for="body">Fond d'écran</label>
+                                </div>
+                                <div id="custom_input">
+                                    <input type="submit" value="Modifier">
+                                </div>
+                                </form>
                         </section>
     </main>
         <footer>
@@ -334,3 +378,19 @@ require('meta.php'); //Récupération des meta et des link necessaire à la navi
         </footer>
 </body>
 </html>
+<?php
+    if(isset($_SESSION['final']) && $_SESSION['final']==1)
+    {
+        unset($_SESSION['error']);
+        unset($_SESSION['popup_annule']);
+        unset($_SESSION['final']);
+        unset($_SESSION['error_validation']);
+        header('location: profil.php');
+        exit();
+    }
+        elseif(isset($_SESSION['error']) && $_SESSION['error']==1){
+            unset($_POST);
+            unset($_SESSION['error']);
+            header('location: profil.php');
+        }
+?>

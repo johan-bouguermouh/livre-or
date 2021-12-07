@@ -8,9 +8,7 @@ body{
 .admin_body{
     background-image: url(images/background02.jpg);
 }
-.user_body{
-    background-color: rgb(196, 145, 145);
-}
+
 .none_body{
     background: linear-gradient(#ffffff,#b0d9c8) ;
 }
@@ -49,7 +47,7 @@ header nav section h3{
 }
 
 .admin_icon_login{
-    background-color: rgb(235, 235, 235);
+    background-color: #ffffff;
     width: 8vw;
     height: 8vw;
     max-width: 50px;
@@ -68,7 +66,6 @@ header nav section h3{
     margin-right: .625rem;
 }
 .user_icon_login{
-    background-color: rgb(235, 235, 235);
     width: 8vw;
     height: 8vw;
     max-width: 50px;
@@ -190,7 +187,8 @@ h2{
     text-align: center;
 
 }
-main {
+.art_formulaire{
+    width: 100;
     height: 80vh;
     display: flex;
     flex-direction: column;
@@ -335,6 +333,8 @@ input{
     padding: 1.25rem;
     border-radius: 8px;
     box-shadow: 5px 0px 30px 1px rgba(0, 0, 0, 0.308);
+    width: 70%;
+    max-width: 600px;
 }
 .info_update{
     background-color: rgb(255, 255, 255);
@@ -403,6 +403,32 @@ input{
 #input_bottom input:hover{
     background-color: #01898c;
 }
+/** CUSTOM PROFIL*/
+#custon_color {
+    margin-top: .625rem;
+    background-color: white;
+    padding: 1.25rem;
+    border-radius: 8px;
+    box-shadow: 5px 0px 30px 1px rgb(0 0 0 / 31%);
+    width: 63%;
+    max-width: 560px;
+}
+
+#custon_color form{
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#custon_color div input{
+    width: 1.875rem;
+    height: 1.875rem;
+   
+}
+#custom_input input{
+    width: 4.375rem !important;
+}
+
 /** TABLEAU GESTIONNAIRE*/
 .main_gestionnaire section{
 
@@ -471,4 +497,94 @@ footer{
     background-color: #545454;
     margin-left: 1rem;
     margin-right: 1rem;
+}
+/** LIVRE OR */
+/** FORMULAIRE DE COMMENTAIRE**/
+
+.form_commentaires{
+    width: 70%;
+    max-width: 35.75rem;
+    height: 18.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10vh;
+    position: fixed;
+}
+.form_commentaires form{
+    width: 90%;
+}
+.form_commentaires form textarea{
+    width: 100%;
+    border-radius: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.2rem;
+}
+/**COMMENTAIRE**/
+.commentaire{
+    background-color: #ffffff;
+    border-radius: 9px;
+    width: 70%;
+    max-width: 900px;
+    margin: .5rem;
+    box-shadow: 5px 0px 10px 1px rgba(0, 0, 0, 0.308);
+}
+.header_commentaire{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 1.25rem;
+}
+.header_commentaire div{
+    margin-top: .4375rem;
+    margin-bottom: .4375rem;
+}
+.content_commentaire{
+    border-top: solid 1px rgb(200, 200, 200);
+    border-bottom: solid 1px rgb(200, 200, 200);
+    font-size: 1.2rem;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+}
+.footer_commentaire{
+    display: flex;
+    justify-content: right;
+    color: rgb(200, 200, 200);
+    font-size: 0.7rem;
+    margin-right: 1.25rem;
+}
+.footer_commentaire p{
+    margin-block-start: 0.5em;
+}
+#livre_or_session_main{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#all_article_main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50vw;
+}
+#form_session_fixe{
+    position: relative;
+    width: 40vw;
+    padding-top: 1.875rem;
+}
+
+@media(max-width:1210px){
+    #livre_or_session_main{
+        flex-direction: column;
+    }
+    #all_article_main{
+        width: 100vw;
+        margin-top: 1.25rem;
+    }
+    #form_session_fixe{
+        order: 1;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+    }
 }

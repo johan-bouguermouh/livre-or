@@ -10,6 +10,8 @@
     ?>
         <a href="Gestionnaire.php">Gestionnaire</a>
         <div class="lateral_cesure_footer"></div>
+        <a href="livre_or.php">Livre D'Or</a>
+        <div class="lateral_cesure_footer"></div>
         <a href="deconnexion.php">Se déconnecter</a>
     <?php
     }
@@ -17,6 +19,8 @@
     {
     ?>
         <a href="profil.php">Mon compte</a>
+        <div class="lateral_cesure_footer"></div>
+        <a href="livre_or.php">Livre D'Or</a>
         <div class="lateral_cesure_footer"></div>
        <a href="deconnexion.php">Se déconnecter</a>
     <?php

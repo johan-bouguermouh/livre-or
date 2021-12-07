@@ -37,13 +37,17 @@ if(isset($_SESSION['id']))
             {
 ?>
                 <li><a href="profil.php">Mon compte</a></li>
-                <li><div class="span_line"></div></li>      
+                <li><div class="span_line"></div></li>
+                <li><a href="livre_or.php">Livre D'Or</a></li>
+                <li><div class="span_line"></div></li>    
 <?php
     }
     if($_SESSION['id']==1){
 ?>
                 <li><a href="Gestionnaire.php">Gestionnaire</a></li>
                 <li><div class="span_line"></div></li>
+                <li><a href="livre_or.php">Livre D'Or</a></li>
+                <li><div class="span_line"></div></li>   
 <?php 
     }
 ?>

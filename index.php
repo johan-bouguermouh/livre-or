@@ -17,6 +17,7 @@ else
     $id='none';
     $img_accueil='images/moodule_background_index_none.png';
 }
+require('custom_body.php');
 
 ?>
 

@@ -18,7 +18,7 @@ else
     $id='none';
 }
 
-$conn = mysqli_connect('localhost','root','','moduleconnexion');
+$conn = mysqli_connect('localhost','root','','livre_or');
 
 if(!empty($_POST["prenom"]) && !empty($_POST["nom"])&& !empty($_POST["login"])&& !empty($_POST["password"]) && !empty($_POST["passwordv"]) )
 {
@@ -76,26 +76,28 @@ require('header.php');
         <source src=".\images\background_inscription_animation.mp4" type="video/mp4">
     </video>
   <main>
-    <div  class="div_design_mdc">
-    <img id="mdc_top"src="images/moodule_top_mdc.png" alt="test">
-    </div>
-    <div class="test_mdc">
-      <h2>Inscription</h2>
-      <form class="inscription_form"action="./inscription.php" method="post">
-      <p><?=$intro?></p>
-      <input type="text" name="prenom" placeholder="Votre prénom"><br>
-      <input type="text" name="nom" placeholder="Votre nom"><br>
-      <input class="<?=$localisation_erreur?>_login"type="text" name="login" placeholder="Votre login de connexion"><br>
-      <input class="<?=$localisation_erreur?>_mdp" type="password" name="password" placeholder="Créer votre mot de passe"><br>
-      <input class="<?=$localisation_erreur?>_mdp"type="password" name="passwordv" placeholder="Vérifier votre mot de passe"><br>
-      <section class="inscription_bottom_formulaire">
-          <input id="input_important" type="submit" value="S'inscire">
-        </section>
-      </form>
+  <article class="art_formulaire">
+      <div  class="div_design_mdc">
+      <img id="mdc_top"src="images/moodule_top_mdc.png" alt="test">
       </div>
-    <div  class="div_design_mdc">
-    <img id="mdc_bottom"src="images/moodule_bottom_mdc.png" alt="test">
-    </div>
+      <div class="test_mdc">
+        <h2>Inscription</h2>
+        <form class="inscription_form"action="./inscription.php" method="post">
+        <p><?=$intro?></p>
+        <input type="text" name="prenom" placeholder="Votre prénom"><br>
+        <input type="text" name="nom" placeholder="Votre nom"><br>
+        <input class="<?=$localisation_erreur?>_login"type="text" name="login" placeholder="Votre login de connexion"><br>
+        <input class="<?=$localisation_erreur?>_mdp" type="password" name="password" placeholder="Créer votre mot de passe"><br>
+        <input class="<?=$localisation_erreur?>_mdp"type="password" name="passwordv" placeholder="Vérifier votre mot de passe"><br>
+        <section class="inscription_bottom_formulaire">
+            <input id="input_important" type="submit" value="S'inscire">
+          </section>
+        </form>
+        </div>
+      <div  class="div_design_mdc">
+      <img id="mdc_bottom"src="images/moodule_bottom_mdc.png" alt="test">
+      </div>
+  </article>
   </main>
   <footer>
   <?php

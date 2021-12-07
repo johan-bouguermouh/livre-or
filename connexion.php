@@ -1,11 +1,9 @@
 <?php
-
 session_start();
 if(isset($_SESSION['id'])){
     header('location: index.php');
 }
-
-$conn = mysqli_connect('localhost','root','','moduleconnexion');
+$conn = mysqli_connect('localhost','root','','livre_or');
 
 if(isset($_POST["login"], $_POST["password"])){
     $login = $_POST["login"];
@@ -21,31 +19,49 @@ if(isset($_POST["login"], $_POST["password"])){
         $vmdp3 = $vmdp2['password'];
 
         if(password_verify($password,$vmdp3) === TRUE){
-            $_SESSION['id']=$vmdp2['id'];
-            $_SESSION['prenom']=$vmdp2['prenom'];
-            $_SESSION['nom']=$vmdp2['nom'];
-            $_SESSION['login']=$vmdp2['login'];
-            header('location: index.php');
+                $_SESSION['id']=$vmdp2['id'];
+                $_SESSION['prenom']=$vmdp2['prenom'];
+                $_SESSION['nom']=$vmdp2['nom'];
+                $_SESSION['login']=$vmdp2['login'];
+                if(isset($vmdp2['color_body'])){
+                $_SESSION['color_head']=$vmdp2['color_body'];
+            }
+            if(isset($vmdp2['color_head'])){
+                $_SESSION['color_head']=$vmdp2['color_head'];
+            }
+                header('location: index.php');
         }
         elseif(($password === 'admin')&&($login === 'admin'))
         {
-            $_SESSION['id']=$vmdp2['id'];
-            $_SESSION['prenom']=$vmdp2['prenom'];
-            $_SESSION['nom']=$vmdp2['nom'];
-            $_SESSION['login']=$vmdp2['login'];
-            header('location: index.php');
+                $_SESSION['id']=$vmdp2['id'];
+                $_SESSION['prenom']=$vmdp2['prenom'];
+                $_SESSION['nom']=$vmdp2['nom'];
+                $_SESSION['login']=$vmdp2['login'];
+                if(!empty($vmdp2['color_body']))
+                {
+                $_SESSION['color_body'] = $vmdp2['color_body'];
+                }
+                if(!empty($vmdp2['color_head']))
+                {
+                $_SESSION['color_head'] = $vmdp2['color_head'];
+                }
+                header('location: index.php');
         }
         else {
-            $h3_connect = "Mauvais mot de passe";
+                $h3_connect = "Mauvais mot de passe";
         }
-    }
-    else
-    { 
-        $h3_connect = 'Veuillez rentrer login valide.';
-    } 
-}
-else $h3_connect ='Bienvenue';
 
+        }
+        else
+        { 
+            $h3_connect = 'Veuillez rentrer login valide.';
+        } 
+    
+}
+else
+{
+    $h3_connect ='Bienvenue';
+}
 ?>
 
 <!DOCTYPE html>
@@ -69,38 +85,40 @@ require('header.php');
         <source src=".\images\background_connect_animation.mp4" type="video/mp4">
     </video>
     <main>
-    <div  class="div_design_mdc">
-    <img id="mdc_top_connect"src="images/moodule_top_mdc_connect.png" alt="test">
-    </div>
-<?php
-    if(isset($_SESSION['prenom']))
-    {
-        $h3_connect ="Félicitation ".$_SESSION['prenom'].", vous êtes à présent inscrit!";
-    }
-?>
-    <div class="test_mdc_connect">
-     <h3><?=$h3_connect?></h3>
-    
-    <form action="./connexion.php" method="post">
-    <label for="login">Login</label><br>
-    <input type="text" name="login" 
+    <article class="art_formulaire">
+        <div  class="div_design_mdc">
+        <img id="mdc_top_connect"src="images/moodule_top_mdc_connect.png" alt="test">
+        </div>
     <?php
-     if(isset($_SESSION['login']))
-     {
-         echo "value=".$_SESSION['login'];
-     }
-     else
-     {
-         echo 'placeholder= "Nom d\'utilisateur"';
-     }
-     ?>>
-    <br><label for="password">Mot de passe</label><br>
-    <input type="password" name="password" placeholder="Votre mot de passe">
-    <input class="input_connect" type="submit" value="Connexion">
-    </div>
-    <div  class="div_design_mdc">
-    <img id="mdc_bottom_connect"src="images/moodule_bottom_mdc_connect.png" alt="test">
-    </div>
+        if(isset($_SESSION['prenom']))
+        {
+            $h3_connect ="Félicitation ".$_SESSION['prenom'].", vous êtes à présent inscrit!";
+        }
+    ?>
+        <div class="test_mdc_connect">
+        <h3><?=$h3_connect?></h3>
+        
+        <form action="./connexion.php" method="post">
+        <label for="login">Login</label><br>
+        <input type="text" name="login" 
+        <?php
+        if(isset($_SESSION['login']))
+        {
+            echo "value=".$_SESSION['login'];
+        }
+        else
+        {
+            echo 'placeholder= "Nom d\'utilisateur"';
+        }
+        ?>>
+        <br><label for="password">Mot de passe</label><br>
+        <input type="password" name="password" placeholder="Votre mot de passe">
+        <input class="input_connect" type="submit" value="Connexion">
+        </div>
+        <div  class="div_design_mdc">
+        <img id="mdc_bottom_connect"src="images/moodule_bottom_mdc_connect.png" alt="test">
+        </div>
+    </article>
     </main>
     <footer>
 <?php

@@ -24,7 +24,7 @@ else
     $id='none';
 }
 
-$conn = mysqli_connect('localhost','root','','moduleconnexion');
+$conn = mysqli_connect('localhost','root','','livre_or');
 $log = mysqli_query($conn,"SELECT * FROM utilisateurs");
 $user = mysqli_fetch_all($log,MYSQLI_ASSOC);
 
